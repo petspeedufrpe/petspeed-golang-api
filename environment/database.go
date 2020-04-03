@@ -8,10 +8,10 @@ import (
 )
 
 var environment = mysql.ConnectionURL{
-	Host:     "haut.id",
-	User:     "hautid_desenvolvimento",
-	Password: "desenvolvimento2019",
-	Database: "hautid_desenvolvimento"}
+	Host:     "host",
+	User:     "user",
+	Password: "password",
+	Database: "database"}
 
 func connectDatabase() (Database db.Database) {
 	Database, error := mysql.Open(environment)
