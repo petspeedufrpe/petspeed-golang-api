@@ -2,8 +2,8 @@ package model
 
 // Person represents the schema of persons in database.
 type Person struct {
-	ID       int    `json:"id"`
+	PersonID int    `json:"person_id"`
 	Name     string `json:"name"`
 	Document string `json:"document"`
-	UserID   int    `json:"userID"`
+	UserID   int    `json:"user_id"`
 }

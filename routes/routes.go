@@ -1,7 +1,18 @@
 package routes
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"petspeed-golang-api/controller"
+)
 
-func router() {
-	fmt.Println("teste")
+// Router é onde fica a porra das rotas
+func Router() {
+	http.HandleFunc("/", hello)
+	http.HandleFunc("/user/registerUser", controller.UserRegister)
+	log.Fatal(http.ListenAndServe(":3000", nil))
+}
+func hello(writer http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(writer, "Server is running at :3000...")
 }

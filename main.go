@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"petspeed-golang-api/routes"
 )
 
 func main() {
-	fmt.Println("Testing..")
+	routes.Router()
 }

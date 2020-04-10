@@ -1,22 +1,16 @@
 package environment
 
 import (
-	"log"
-
-	"upper.io/db.v3"
-	"upper.io/db.v3/mysql"
+	"database/sql"
+	// just ignore this line
+	_ "github.com/go-sql-driver/mysql"
 )
 
-var environment = mysql.ConnectionURL{
-	Host:     "host",
-	User:     "user",
-	Password: "password",
-	Database: "database"}
-
-func connectDatabase() (Database db.Database) {
-	Database, error := mysql.Open(environment)
-	if error != nil {
-		log.Fatal(error.Error())
+// ConnectDatabase is the function to connect to our database on umbler.
+func ConnectDatabase() (Database *sql.DB) {
+	Database, err := sql.Open("mysql", "")
+	if err != nil {
+		panic(err)
 	}
 	return Database
 }
