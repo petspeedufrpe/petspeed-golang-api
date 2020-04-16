@@ -58,3 +58,39 @@ func VerifyEmail(email string) bool {
 
 	return false
 }
+
+//Login is the function to login a user
+func Login(writer http.ResponseWriter, request *http.Request) {
+	database := environment.ConnectDatabase()
+	bodyJSON, err := ioutil.ReadAll(request.Body)
+	if err != nil {
+		panic(err)
+	}
+	var userCostumer model.UserCostumer
+	var user model.User
+	err = json.Unmarshal(bodyJSON, &user)
+	userPassword := findUserByEmail(user.Email)
+	encrypted := bcrypt.CompareHashAndPassword(userPassword, []byte(user.Password))
+	if encrypted == nil {
+		loginQuery := database.QueryRow("select u.id, u.email, u.password, p.person_id, p.name, p.document, p.user_id, c.costumer_id, c.person_id from user as u left join person as p on (p.user_id = u.id) left join costumer as c on (c.person_id = p.person_id) where email = ?", user.Email)
+		loginQuery.Scan(&userCostumer.ID, &userCostumer.Email, &userCostumer.Password, &userCostumer.PersonID, &userCostumer.Name, &userCostumer.Document, &userCostumer.UserID, &userCostumer.CostumerID, &userCostumer.CostumerPersonID)
+		userJSON, _ := json.Marshal(userCostumer)
+		writer.Write(userJSON)
+
+	} else {
+		writer.WriteHeader(http.StatusNotFound)
+	}
+	defer database.Close()
+	return
+}
+func findUserByEmail(email string) []byte {
+	database := environment.ConnectDatabase()
+	var user model.User
+	findQuery := database.QueryRow("select id, email, password from user where email = ?", email)
+	findQuery.Scan(&user.ID, &user.Email, &user.Password)
+	if user.Password != "" {
+		return []byte(user.Password)
+	}
+	defer database.Close()
+	return nil
+}

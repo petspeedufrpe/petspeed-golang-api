@@ -2,6 +2,6 @@ package model
 
 // Costumer represents the schema costumers on database.
 type Costumer struct {
-	ID       int `json:"id"`
-	PersonID int `json:"personID"`
+	CostumerID       int `json:"costumer_id"`
+	CostumerPersonID int `json:"person_id"`
 }
