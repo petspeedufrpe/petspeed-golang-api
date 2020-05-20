@@ -1,7 +1,7 @@
 package main
 
 import (
-	"petspeed-golang-api/routes"
+	"github.com/petspeedufpre/petspeed-golang-api/routes"
 )
 
 func main() {

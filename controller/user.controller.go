@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"petspeed-golang-api/environment"
-	"petspeed-golang-api/model"
 
+	"github.com/petspeedufrpe/petspeed-golang-api/environment"
+	"github.com/petspeedufrpe/petspeed-golang-api/model"
 	"golang.org/x/crypto/bcrypt"
 )
 

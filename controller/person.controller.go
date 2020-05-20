@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"petspeed-golang-api/environment"
-	"petspeed-golang-api/model"
+	"github.com/petspeedufrpe/petspeed-golang-api/environment"
+	"github.com/petspeedufrpe/petspeed-golang-api/model"
 )
 
 // VerifyDocument is the function to verify if the document is already registered in database
