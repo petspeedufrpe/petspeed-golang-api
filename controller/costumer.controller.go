@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/petseepdufrpe/petspeed-golang-api/environment"
+	"github.com/petspeedufrpe/petspeed-golang-api/environment"
 )
 
 // CostumerRegister is the function to register a costumer in database.
